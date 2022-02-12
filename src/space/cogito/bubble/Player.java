@@ -2,8 +2,12 @@ package space.cogito.bubble;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import lombok.Getter;
+import lombok.Setter;
 
 // class Player -> new 가능한 애들 ! 게임에 존재 할 수 있음. (추상 메서드를 가질 수 없다.)
+@Getter
+@Setter
 public class Player extends JLabel implements Moveable {
 
     // 위치 상태
@@ -42,23 +46,44 @@ public class Player extends JLabel implements Moveable {
         setLocation(x, y);
     }
 
+    // 이벤트 핸들러
     @Override
     public void left() {
-        setIcon(playerL);
-        x = x - 10;
-        setLocation(x, y);
+        left = true;
+        new Thread(() -> {
+            while (left) {
+                setIcon(playerL);
+                x = x - 1;
+                setLocation(x, y);
+                try {
+                    Thread.sleep(10); // 0.01초
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     @Override
     public void right() {
-        setIcon(playerR);
-        x = x + 10;
-        setLocation(x, y);
+        right = true;
+        new Thread(() -> {
+            while (right) {
+                setIcon(playerR);
+                x = x + 1;
+                setLocation(x, y);
+                try {
+                    Thread.sleep(10); // 0.01초
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     @Override
     public void up() {
-
+        System.out.println("점프");
     }
 
     @Override
