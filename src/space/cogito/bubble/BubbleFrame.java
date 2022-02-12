@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 public class BubbleFrame extends JFrame {
 
     private JLabel backgroundMap;
+    private Player player;
 
     public BubbleFrame() {
         initObject();
@@ -19,6 +20,8 @@ public class BubbleFrame extends JFrame {
     private void initObject() {
         backgroundMap = new JLabel(new ImageIcon("image/backgroundMap.png"));
         setContentPane(backgroundMap); // JPanel을 JLabel로 대체함
+        player = new Player();
+        add(player);
 //        backgroundMap.setSize(1000, 600);
 //        backgroundMap.setLocation(300, 300);
 //        add(backgroundMap); // JFrame에 JLabel이 그려진다.
