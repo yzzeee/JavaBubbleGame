@@ -62,6 +62,10 @@ public class BubbleFrame extends JFrame {
 //                    case KeyEvent.VK_DOWN: // 보글 보글에서 떨어지는 건 있어도 벽을 뚫고 내려가는 건 없음
 //                        player.down();
 //                        break;
+                    case KeyEvent.VK_SPACE:
+                        Bubble bubble = new Bubble(player);
+                        add(bubble);
+                        break;
                 }
             }
 
