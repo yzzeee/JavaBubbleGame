@@ -1,5 +1,7 @@
 package space.cogito.bubble;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,8 +16,10 @@ public class BubbleFrame extends JFrame {
     public BubbleFrame() {
         initObject();
         initSetting();
+        initListener();
         setVisible(true); // 그림을 그려라
     }
+
 
     private void initObject() {
         backgroundMap = new JLabel(new ImageIcon("image/backgroundMap.png"));
@@ -25,6 +29,7 @@ public class BubbleFrame extends JFrame {
 //        backgroundMap.setSize(1000, 600);
 //        backgroundMap.setLocation(300, 300);
 //        add(backgroundMap); // JFrame에 JLabel이 그려진다.
+
     }
 
     private void initSetting() {
@@ -33,6 +38,31 @@ public class BubbleFrame extends JFrame {
         setLocationRelativeTo(null); // JFrame 가운데 배치하기
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // X 버튼으로 창 끌 때 JVM 같이 종료하기
     }
+
+    private void initListener() {
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                System.out.println(e.getKeyCode());
+
+                switch (e.getKeyCode()) {
+                    case KeyEvent.VK_LEFT:
+                        player.left();
+                        break;
+                    case KeyEvent.VK_RIGHT:
+                        player.right();
+                        break;
+                    case KeyEvent.VK_UP:
+                        player.up();
+                        break;
+//                    case KeyEvent.VK_DOWN: // 보글 보글에서 떨어지는 건 있어도 벽을 뚫고 내려가는 건 없음
+//                        player.down();
+//                        break;
+                }
+            }
+        });
+    }
+
 
     public static void main(String[] args) {
         new BubbleFrame();
