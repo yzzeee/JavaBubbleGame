@@ -22,14 +22,13 @@ public class BubbleFrame extends JFrame {
 
 
     private void initObject() {
-        backgroundMap = new JLabel(new ImageIcon("image/backgroundMap.png"));
+        backgroundMap = new JLabel(new ImageIcon("image/backgroundMapService.png"));
         setContentPane(backgroundMap); // JPanel을 JLabel로 대체함
         player = new Player();
         add(player);
 //        backgroundMap.setSize(1000, 600);
 //        backgroundMap.setLocation(300, 300);
 //        add(backgroundMap); // JFrame에 JLabel이 그려진다.
-
     }
 
     private void initSetting() {
@@ -83,7 +82,6 @@ public class BubbleFrame extends JFrame {
             }
         });
     }
-
 
     public static void main(String[] args) {
         new BubbleFrame();
