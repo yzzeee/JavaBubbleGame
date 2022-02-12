@@ -20,6 +20,10 @@ public class Player extends JLabel implements Moveable {
     private boolean up;
     private boolean down;
 
+    // 플레이어 속도
+    private final int SPEED = 4;
+    private final int JUMPSPEED = 2; // up, down
+
     private ImageIcon playerR, playerL;
 
     public Player() {
@@ -49,11 +53,12 @@ public class Player extends JLabel implements Moveable {
     // 이벤트 핸들러
     @Override
     public void left() {
+        System.out.println("left");
         left = true;
         new Thread(() -> {
             while (left) {
                 setIcon(playerL);
-                x = x - 1;
+                x = x - SPEED;
                 setLocation(x, y);
                 try {
                     Thread.sleep(10); // 0.01초
@@ -66,11 +71,12 @@ public class Player extends JLabel implements Moveable {
 
     @Override
     public void right() {
+        System.out.println("right");
         right = true;
         new Thread(() -> {
             while (right) {
                 setIcon(playerR);
-                x = x + 1;
+                x = x + SPEED;
                 setLocation(x, y);
                 try {
                     Thread.sleep(10); // 0.01초
@@ -81,13 +87,42 @@ public class Player extends JLabel implements Moveable {
         }).start();
     }
 
+    // left + up, right + up
     @Override
     public void up() {
-        System.out.println("점프");
+        System.out.println("up");
+        up = true;
+        new Thread(() -> {
+            for (int i = 0; i < 130 / JUMPSPEED; i++) {
+                y = y - JUMPSPEED;
+                setLocation(x, y);
+                try {
+                    Thread.sleep(10); // 0.01초
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            up = false;
+            down();
+
+        }).start();
     }
 
     @Override
     public void down() {
-
+        System.out.println("down");
+        down = true;
+        new Thread(() -> {
+            for (int i = 0; i < 130 / JUMPSPEED; i++) {
+                y = y + JUMPSPEED;
+                setLocation(x, y);
+                try {
+                    Thread.sleep(10); // 0.01초
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            down = false;
+        }).start();
     }
 }

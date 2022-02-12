@@ -58,7 +58,9 @@ public class BubbleFrame extends JFrame {
                         }
                         break;
                     case KeyEvent.VK_UP:
-                        player.up();
+                        if (!player.isUp() && !player.isDown()) {
+                            player.up();
+                        }
                         break;
 //                    case KeyEvent.VK_DOWN: // 보글 보글에서 떨어지는 건 있어도 벽을 뚫고 내려가는 건 없음
 //                        player.down();
@@ -75,9 +77,6 @@ public class BubbleFrame extends JFrame {
                         break;
                     case KeyEvent.VK_RIGHT:
                         player.setRight(false);
-                        break;
-                    case KeyEvent.VK_UP:
-                        player.setUp(false);
                         break;
                 }
                 super.keyReleased(e);
