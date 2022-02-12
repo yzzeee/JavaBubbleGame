@@ -5,6 +5,7 @@ import javax.swing.JLabel;
 import lombok.Getter;
 import lombok.Setter;
 
+
 // class Player -> new 가능한 애들 ! 게임에 존재 할 수 있음. (추상 메서드를 가질 수 없다.)
 @Getter
 @Setter

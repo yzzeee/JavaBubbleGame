@@ -37,6 +37,10 @@ public class BackgroundPlayerService implements Runnable {
             if (bottomColor != -2) {
                 System.out.println();
                 player.setDown(false);
+            } else { // -2 일 때 실행됨 => 내 바닥 색깔이 하얀색
+                if (!player.isUp() && !player.isDown()) {
+                    player.down();
+                }
             }
 
             // 외벽 충돌 확인
