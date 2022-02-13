@@ -17,6 +17,7 @@ public class BubbleFrame extends JFrame {
     private BubbleFrame mContext = this;
     private JLabel backgroundMap;
     private Player player;
+    private Enemy enemy;
 
     public BubbleFrame() {
         initObject();
@@ -30,6 +31,8 @@ public class BubbleFrame extends JFrame {
         setContentPane(backgroundMap); // JPanel을 JLabel로 대체함
         player = new Player(this);
         add(player);
+        enemy = new Enemy(this);
+        add(enemy);
 //        backgroundMap.setSize(1000, 600);
 //        backgroundMap.setLocation(300, 300);
 //        add(backgroundMap); // JFrame에 JLabel이 그려진다.
