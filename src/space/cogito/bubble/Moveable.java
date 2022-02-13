@@ -12,7 +12,6 @@ public interface Moveable {
     // 그런데 Java는 다중 상속이 되지 않으므로 어댑터 패턴 보다는 default를 사용하는 것이 좋다.
     // Java 8에서 인터페이스에 default 메소드를 구현할 수 있게되었다.
     // default를 사용하면 interface에서 몸체가 있는 메서드를 만들 수 있다.
-    default public void down() {
-    }
-
+    default public void down() {}
+    default public void attack() {}
 }
