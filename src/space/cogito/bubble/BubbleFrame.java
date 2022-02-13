@@ -33,6 +33,7 @@ public class BubbleFrame extends JFrame {
         add(player);
         enemy = new Enemy(this);
         add(enemy);
+        new BGM();
 //        backgroundMap.setSize(1000, 600);
 //        backgroundMap.setLocation(300, 300);
 //        add(backgroundMap); // JFrame에 JLabel이 그려진다.
