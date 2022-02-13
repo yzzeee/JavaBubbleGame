@@ -5,11 +5,16 @@ import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import lombok.Getter;
+import lombok.Setter;
 
 // 1. 윈도우 창이 되었음
 // 2. 윈도우 창은 내부에 패널을 하나 가지고 있다.
+@Getter
+@Setter
 public class BubbleFrame extends JFrame {
 
+    private BubbleFrame mContext = this;
     private JLabel backgroundMap;
     private Player player;
 
@@ -21,7 +26,7 @@ public class BubbleFrame extends JFrame {
     }
 
     private void initObject() {
-        backgroundMap = new JLabel(new ImageIcon("image/backgroundMapService.png"));
+        backgroundMap = new JLabel(new ImageIcon("image/backgroundMap.png"));
         setContentPane(backgroundMap); // JPanel을 JLabel로 대체함
         player = new Player();
         add(player);
@@ -62,7 +67,7 @@ public class BubbleFrame extends JFrame {
 //                        player.down();
 //                        break;
                     case KeyEvent.VK_SPACE:
-                        Bubble bubble = new Bubble(player);
+                        Bubble bubble = new Bubble(mContext);
                         add(bubble);
                         break;
                 }
