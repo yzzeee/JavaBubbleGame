@@ -1,5 +1,7 @@
 package space.cogito.bubble;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import lombok.Getter;
@@ -12,6 +14,7 @@ import lombok.Setter;
 public class Player extends JLabel implements Moveable {
 
     private BubbleFrame mContext;
+    private List<Bubble> bubbleList;
 
     // 위치 상태
     private int x;
@@ -47,6 +50,7 @@ public class Player extends JLabel implements Moveable {
     private void initObject() {
         playerR = new ImageIcon("image/playerR.png");
         playerL = new ImageIcon("image/playerL.png");
+        bubbleList = new ArrayList<>();
     }
 
     private void initSetting() {
@@ -152,6 +156,7 @@ public class Player extends JLabel implements Moveable {
         new Thread(() -> {
             Bubble bubble = new Bubble(mContext);
             mContext.add(bubble);
+            bubbleList.add(bubble);
             if (playerWay == PlayerWay.LEFT) {
                 bubble.left();
             } else {
