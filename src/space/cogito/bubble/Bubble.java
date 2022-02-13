@@ -10,6 +10,7 @@ import lombok.Setter;
 public class Bubble extends JLabel implements Moveable {
     // 의존성 컴포지션
     private Player player;
+    private BackgroundBubbleService backgroundBubbleService;
 
     // 위치 상태
     private int x;
@@ -38,6 +39,8 @@ public class Bubble extends JLabel implements Moveable {
         bubble = new ImageIcon("image/bubble.png");
         bubbled = new ImageIcon("image/bubbled.png");
         bomb = new ImageIcon("image/bomb.png");
+
+        backgroundBubbleService = new BackgroundBubbleService(this);
     }
 
     private void initSetting() {
@@ -71,6 +74,10 @@ public class Bubble extends JLabel implements Moveable {
             x--;
             setLocation(x, y);
 
+            if (backgroundBubbleService.leftWall()) {
+                break;
+            }
+
             try {
                 Thread.sleep(1);
             } catch (InterruptedException e) {
@@ -87,6 +94,10 @@ public class Bubble extends JLabel implements Moveable {
             x++;
             setLocation(x, y);
 
+            if (backgroundBubbleService.rightWall()) {
+                break;
+            }
+
             try {
                 Thread.sleep(1);
             } catch (InterruptedException e) {
@@ -100,15 +111,17 @@ public class Bubble extends JLabel implements Moveable {
     public void up() {
         up = true;
         while (up) {
-            for (int i = 0; i < 400; i++) {
-                y--;
-                setLocation(x, y);
+            y--;
+            setLocation(x, y);
 
-                try {
-                    Thread.sleep(1);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            if (backgroundBubbleService.topWall()) {
+                break;
+            }
+
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }

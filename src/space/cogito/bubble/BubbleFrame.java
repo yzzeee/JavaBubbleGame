@@ -20,7 +20,6 @@ public class BubbleFrame extends JFrame {
         setVisible(true); // 그림을 그려라
     }
 
-
     private void initObject() {
         backgroundMap = new JLabel(new ImageIcon("image/backgroundMapService.png"));
         setContentPane(backgroundMap); // JPanel을 JLabel로 대체함
