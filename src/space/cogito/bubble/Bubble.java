@@ -11,6 +11,7 @@ public class Bubble extends JLabel implements Moveable {
     // 의존성 컴포지션
     private BubbleFrame mContext;
     private Player player;
+    private Enemy enemy;
     private BackgroundBubbleService backgroundBubbleService;
 
     // 위치 상태
@@ -32,6 +33,7 @@ public class Bubble extends JLabel implements Moveable {
     public Bubble(BubbleFrame mContext) {
         this.mContext = mContext;
         this.player = mContext.getPlayer();
+        this.enemy = mContext.getEnemy();
         initObject();
         initSetting();
     }
@@ -70,6 +72,15 @@ public class Bubble extends JLabel implements Moveable {
                 break;
             }
 
+            // 버블과의 거리가 10
+            if (Math.abs(x - enemy.getX()) < 10 &&
+                    (Math.abs(y - enemy.getY()) > 0 && Math.abs(y - enemy.getY()) < 50)) {
+                if (enemy.getState() == 0) {
+                    attack();
+                    break;
+                }
+            }
+
             try {
                 Thread.sleep(1);
             } catch (InterruptedException e) {
@@ -89,6 +100,14 @@ public class Bubble extends JLabel implements Moveable {
             if (backgroundBubbleService.rightWall()) {
                 right = false;
                 break;
+            }
+
+            if (Math.abs(x - enemy.getX()) < 10 &&
+                    (Math.abs(y - enemy.getY()) > 0 && Math.abs(y - enemy.getY()) < 50)) {
+                if (enemy.getState() == 0) {
+                    attack();
+                    break;
+                }
             }
 
             try {
@@ -113,12 +132,27 @@ public class Bubble extends JLabel implements Moveable {
             }
 
             try {
-                Thread.sleep(1);
+                if (state == 0) {
+                    Thread.sleep(1);
+                } else {
+                    Thread.sleep(10);
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        clearBubble(); // 천장에 버블이 도착하고 나서 3초 후에 메모리에서 소멸
+        if (state == 0) {
+            clearBubble(); // 천장에 버블이 도착하고 나서 3초 후에 메모리에서 소멸
+        }
+    }
+
+    @Override
+    public void attack() {
+        state = 1;
+        enemy.setState(1);
+        setIcon(bubbled);
+        mContext.remove(enemy); // 메모리에서 사라지게 한다.(가비지 컬렉션 -> 즉시 발동하지 않음)
+        mContext.repaint(); // 화면 갱신
     }
 
     // 행위 -> clear(동사) -> bubble(목적어)
