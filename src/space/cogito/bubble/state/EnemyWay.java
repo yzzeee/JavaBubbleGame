@@ -1,4 +1,4 @@
-package space.cogito.bubble;
+package space.cogito.bubble.state;
 
 public enum EnemyWay {
     LEFT, RIGHT;

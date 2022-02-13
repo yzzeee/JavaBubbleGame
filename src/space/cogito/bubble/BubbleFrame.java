@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import lombok.Getter;
 import lombok.Setter;
+import space.cogito.bubble.component.Enemy;
+import space.cogito.bubble.component.Player;
+import space.cogito.bubble.music.BGM;
 
 // 1. 윈도우 창이 되었음
 // 2. 윈도우 창은 내부에 패널을 하나 가지고 있다.

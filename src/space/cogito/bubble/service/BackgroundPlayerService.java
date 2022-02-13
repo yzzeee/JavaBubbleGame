@@ -1,4 +1,4 @@
-package space.cogito.bubble;
+package space.cogito.bubble.service;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import javax.imageio.ImageIO;
+import space.cogito.bubble.component.Bubble;
+import space.cogito.bubble.component.Player;
 
 // 메인 스레드는 바쁨 - 키보드 이벤트를 처리하느라
 // 백그라운드에서계속 관찰

@@ -1,9 +1,12 @@
-package space.cogito.bubble;
+package space.cogito.bubble.component;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import lombok.Getter;
 import lombok.Setter;
+import space.cogito.bubble.BubbleFrame;
+import space.cogito.bubble.Moveable;
+import space.cogito.bubble.service.BackgroundBubbleService;
 
 @Getter
 @Setter

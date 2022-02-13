@@ -1,4 +1,4 @@
-package space.cogito.bubble;
+package space.cogito.bubble.music;
 
 import java.io.File;
 import javax.sound.sampled.AudioInputStream;

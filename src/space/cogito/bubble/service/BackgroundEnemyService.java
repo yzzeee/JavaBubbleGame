@@ -1,10 +1,11 @@
-package space.cogito.bubble;
+package space.cogito.bubble.service;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import space.cogito.bubble.component.Enemy;
 
 public class BackgroundEnemyService implements Runnable {
 
